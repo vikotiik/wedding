@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Александр и Виктория — 10 мая 2026</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Caveat:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+margin:0;
+font-family:'Caveat',cursive;
+color:white;
+overflow-x:hidden;
+scroll-behavior:smooth;
+
+background:
+linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),
+url("https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1600&q=80");
+
+background-size:cover;
+background-position:center;
+background-attachment:fixed;
+}
+
+section{
+min-height:100vh;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+text-align:center;
+padding:90px 20px;
+backdrop-filter:blur(1px);
+}
+
+/* animated handwritten names */
+
+.hero h1{
+font-family:"Great Vibes";
+font-size:100px;
+margin:0;
+letter-spacing:3px;
+opacity:0;
+animation:writeNames 3s ease forwards;
+}
+
+@keyframes writeNames{
+0%{opacity:0;transform:translateY(20px);letter-spacing:20px}
+100%{opacity:1;transform:translateY(0);letter-spacing:3px}
+}
+
+h2{
+font-size:46px;
+font-weight:400;
+margin-bottom:30px;
+}
+
+p{
+max-width:720px;
+line-height:1.8;
+font-size:30px;
+}
+
+.hero{background:rgba(218,195,169,.35)}
+.timeline{background:rgba(156,144,120,.45)}
+.dress{background:rgba(96,101,93,.55)}
+.place{background:rgba(181,154,127,.45)}
+.end{background:rgba(62,70,64,.65)}
+
+.map{
+width:90%;
+max-width:700px;
+height:350px;
+border-radius:14px;
+overflow:hidden;
+margin-top:20px;
+box-shadow:0 10px 30px rgba(0,0,0,.4);
+}
+
+/* timeline */
+
+.timeline-wrapper{
+position:relative;
+width:100%;
+max-width:900px;
+height:760px;
+margin-top:40px;
+}
+
+.timeline-svg{
+width:100%;
+height:100%;
+}
+
+.timeline-path{
+stroke:gold;
+stroke-width:4;
+fill:none;
+stroke-dasharray:2600;
+stroke-dashoffset:2600;
+transition:stroke-dashoffset 3s ease;
+}
+
+.timeline-visible .timeline-path{
+stroke-dashoffset:0;
+}
+
+/* glowing animation along line */
+
+.glow{
+fill:none;
+stroke:white;
+stroke-width:6;
+stroke-dasharray:40 2600;
+stroke-linecap:round;
+animation:moveGlow 6s linear infinite;
+opacity:.6;
+}
+
+@keyframes moveGlow{
+from{stroke-dashoffset:0}
+to{stroke-dashoffset:-2600}
+}
+
+.point{
+position:absolute;
+transform:translate(-50%,-50%);
+opacity:0;
+transition:1s;
+}
+
+.point.visible{
+opacity:1;
+}
+
+.point span{
+display:block;
+margin-top:10px;
+font-size:26px;
+max-width:200px;
+}
+
+.dot{
+width:16px;
+height:16px;
+border-radius:50%;
+background:white;
+margin:auto;
+box-shadow:0 0 10px gold;
+}
+
+/* petals */
+
+.petal{
+position:fixed;
+top:-40px;
+pointer-events:none;
+width:18px;
+height:18px;
+background:url("https://upload.wikimedia.org/wikipedia/commons/3/36/Rose_petal_icon.png");
+background-size:contain;
+background-repeat:no-repeat;
+animation:fall linear forwards;
+}
+
+@keyframes fall{
+0%{transform:translateY(-40px) rotate(0deg)}
+100%{transform:translateY(110vh) rotate(360deg)}
+}
+
+.countdown{
+margin-top:30px;
+font-size:34px;
+letter-spacing:2px;
+}
+
+.route-btn{
+margin-top:15px;
+padding:12px 26px;
+border:1px solid white;
+background:transparent;
+color:white;
+cursor:pointer;
+font-size:22px;
+font-family:'Caveat';
+transition:.3s;
+}
+
+.route-btn:hover{
+background:white;
+color:black;
+}
+
+</style>
+</head>
+
+<body>
+
+<section class="hero">
+
+<h1>Александр & Виктория</h1>
+
+<p>Мы будем счастливы разделить с вами самый важный день нашей жизни</p>
+
+<p>10 мая 2026</p>
+
+<div class="countdown" id="countdown"></div>
+
+</section>
+
+<section class="timeline" id="timeline">
+
+<h2>Таймлайн дня</h2>
+
+<div class="timeline-wrapper">
+
+<svg class="timeline-svg" viewBox="0 0 900 760">
+
+<path class="timeline-path" id="mainPath" d="M80 80 C300 180 620 20 840 200 S650 450 320 520 S640 660 840 740" />
+
+<path class="glow" d="M80 80 C300 180 620 20 840 200 S650 450 320 520 S640 660 840 740" />
+
+</svg>
+
+<div class="point" style="top:80px;left:80px">
+<div class="dot"></div>
+<span>19:00–19:20<br>Сбор в ЗАГСе</span>
+</div>
+
+<div class="point" style="top:190px;left:780px">
+<div class="dot"></div>
+<span>19:40<br>Торжественная роспись</span>
+</div>
+
+<div class="point" style="top:340px;left:640px">
+<div class="dot"></div>
+<span>20:30<br>Выезд на площадку</span>
+</div>
+
+<div class="point" style="top:520px;left:320px">
+<div class="dot"></div>
+<span>21:00<br>Начало праздника</span>
+</div>
+
+<div class="point" style="top:650px;left:600px">
+<div class="dot"></div>
+<span>00:00<br>Торт</span>
+</div>
+
+<div class="point" style="top:740px;left:840px">
+<div class="dot"></div>
+<span>01:00<br>Финал</span>
+</div>
+
+</div>
+
+</section>
+
+<section class="dress">
+
+<h2>Дресс-код</h2>
+
+<p>
+Дорогие гости, дресс-код есть только у жениха и невесты! Будем рады видеть вас в чем душе угодно и что не нарушает нынешних законов ;)
+</p>
+
+</section>
+
+<section class="place">
+
+<h2>Место сбора</h2>
+
+<p>
+Дворец бракосочетания №2<br>
+ул. Фурштатская, 52
+</p>
+
+<button class="route-btn" onclick="window.open('https://maps.google.com/?q=Фурштатская 52 Санкт-Петербург')">Построить маршрут</button>
+
+<div class="map">
+
+<iframe width="100%" height="100%" frameborder="0" src="https://maps.google.com/maps?q=Фурштатская%2052%20Санкт-Петербург&t=&z=15&ie=UTF8&iwloc=&output=embed"></iframe>
+
+</div>
+
+<h2 style="margin-top:70px">Площадка праздника</h2>
+
+<p>
+Лофт Агава<br>
+Арсенальная ул., 2
+</p>
+
+<button class="route-btn" onclick="window.open('https://maps.google.com/?q=Арсенальная 2 Санкт-Петербург')">Построить маршрут</button>
+
+<div class="map">
+
+<iframe width="100%" height="100%" frameborder="0" src="https://maps.google.com/maps?q=Арсенальная%202%20Санкт-Петербург&t=&z=15&ie=UTF8&iwloc=&output=embed"></iframe>
+
+</div>
+
+</section>
+
+<section class="end">
+
+<h2>Подтверждение</h2>
+
+<p>
+Просим подтвердить своё присутствие, написав нам лично.
+</p>
+
+<p style="margin-top:40px">
+Наши любимые, мы просим не дарить нам цветы!
+Вместо них по возможности возьмите с собой ваш любимый алкогольный напиток!
+И вы будете наслаждаться, и мы сэкономим ;)
+</p>
+
+<p style="margin-top:40px">
+С любовью,<br>
+Александр и Виктория
+</p>
+
+<div class="qr-section">
+<p>QR-код ведет на чат в тг, где в день мероприятия будет производиться координация и оповещение об изменениях 🫶</p>
+<img src="https://api.qrserver.com/v1/create-qr-code/?data=https://t.me/AlexandVictoriya&size=200x200" alt="QR-код">
+</div>
+
+</section>
+
+<script>
+
+const date=new Date("May 10, 2026 19:00:00").getTime()
+
+setInterval(()=>{
+
+let now=new Date().getTime()
+let diff=date-now
+
+let d=Math.floor(diff/(1000*60*60*24))
+let h=Math.floor((diff%(1000*60*60*24))/(1000*60*60))
+let m=Math.floor((diff%(1000*60*60))/(1000*60))
+
+let el=document.getElementById("countdown")
+
+if(el) el.innerHTML=`До свадьбы: ${d}д ${h}ч ${m}м`
+
+},1000)
+
+const timeline=document.querySelector("#timeline")
+const points=document.querySelectorAll(".point")
+
+function revealTimeline(){
+
+let top=timeline.getBoundingClientRect().top
+
+if(top<window.innerHeight*0.7){
+
+ timeline.classList.add("timeline-visible")
+
+ points.forEach((p,i)=>{
+ setTimeout(()=>p.classList.add("visible"),i*400)
+ })
+
+}
+
+}
+
+window.addEventListener("scroll",revealTimeline)
+revealTimeline()
+
+function createPetal(){
+
+let petal=document.createElement("div")
+petal.className="petal"
+petal.style.left=Math.random()*100+"vw"
+petal.style.animationDuration=(7+Math.random()*5)+"s"
+petal.style.opacity=Math.random()
+
+ document.body.appendChild(petal)
+
+ setTimeout(()=>petal.remove(),12000)
+
+}
+
+setInterval(createPetal,350)
+
+</script>
+
+</body>
+</html>
